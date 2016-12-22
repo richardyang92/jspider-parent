@@ -10,12 +10,12 @@ import com.ry.jspider.core.task.TaskWorker;
  * Created by yangyang on 2016/12/21.
  */
 public class TaskXMLBuilderTest {
-
-    public static void main(String[] args) throws InterruptedException {
+    static {
         Const.CONFIG_FILE_PATH =
                 "F:\\code\\jspider-parent\\jspider-core\\src\\main\\resources\\spider.xml";
-//        TaskXMLBuilder builder = new TaskXMLBuilder("http://www.baidu.com", "worker1");
-//        Task task = builder.build().getInstance();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
         Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
 
         TaskWorker worker = new TaskWorker("worker1");
