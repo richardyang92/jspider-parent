@@ -39,6 +39,10 @@ public class SpiderXMLConfig extends XMLConfig {
         return getHttpConfig(id).element("header");
     }
 
+    private static Element getURLs() {
+        return getSpider().element("urls");
+    }
+
     public static String getSpiderName() {
         return getSpider().attributeValue("name");
     }
@@ -113,5 +117,15 @@ public class SpiderXMLConfig extends XMLConfig {
     public static String getUser_Agent(String id) {
         Element header = getHeader(id);
         return header.attributeValue("User-Agent");
+    }
+
+    public static List<String> getURLList() {
+        Element urls = getURLs();
+        List<String> urlList = new ArrayList<String>();
+
+        for (Object o : urls.elements("url")) {
+            urlList.add(((Element) o).getStringValue());
+        }
+        return urlList;
     }
 }

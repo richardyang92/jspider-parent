@@ -3,6 +3,7 @@ package com.ry.jspider.test;
 import com.ry.jspider.core.builder.TaskXMLBuilder;
 import com.ry.jspider.core.config.Const;
 import com.ry.jspider.core.task.Task;
+import com.ry.jspider.core.task.TaskHandlerAdaptor;
 import com.ry.jspider.core.task.TaskWorker;
 
 /**
@@ -12,12 +13,13 @@ public class TaskXMLBuilderTest {
 
     public static void main(String[] args) throws InterruptedException {
         Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-html\\src\\main\\resources\\spider.xml";
+                "F:\\code\\jspider-parent\\jspider-core\\src\\main\\resources\\spider.xml";
 //        TaskXMLBuilder builder = new TaskXMLBuilder("http://www.baidu.com", "worker1");
 //        Task task = builder.build().getInstance();
         Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
 
         TaskWorker worker = new TaskWorker("worker1");
+        worker.setHandler(new TaskHandlerAdaptor());
         worker.init();
 
         Thread thread = new Thread(worker);

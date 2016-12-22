@@ -5,8 +5,8 @@ import com.ry.jspider.core.log.Log;
 /**
  * Created by yangyang on 2016/12/21.
  */
-public class TaskHandler {
-    private static Log log = Log.getLogger(TaskHandler.class);
+public class TaskHandlerAdaptor implements Handler {
+    private static Log log = Log.getLogger(TaskHandlerAdaptor.class);
 
     public void messageReceived(String result) {
         if (result.equals("")) {

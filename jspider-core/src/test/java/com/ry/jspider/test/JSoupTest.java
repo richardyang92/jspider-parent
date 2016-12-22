@@ -1,6 +1,6 @@
 package com.ry.jspider.test;
 
-import com.ry.jspider.html.util.HttpUtil;
+import com.ry.jspider.core.util.HttpUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

@@ -3,8 +3,9 @@ package com.ry.jspider.test;
 import com.ry.jspider.core.config.Const;
 import com.ry.jspider.core.log.Log;
 import com.ry.jspider.core.task.Task;
+import com.ry.jspider.core.task.TaskHandlerAdaptor;
 import com.ry.jspider.core.task.TaskWorker;
-import com.ry.jspider.html.filter.HtmlReadFilter;
+import com.ry.jspider.core.html.filter.HtmlReadFilter;
 
 /**
  * Created by yangyang on 2016/12/20.
@@ -12,8 +13,9 @@ import com.ry.jspider.html.filter.HtmlReadFilter;
 public class HtmlTest {
     private static Log log = Log.getLogger(HtmlTest.class);
     public static void main(String[] args) throws InterruptedException {
-        Const.CONFIG_FILE_PATH = "F:\\code\\jspider-parent\\jspider-html\\src\\main\\resources\\spider.xml";
+        Const.CONFIG_FILE_PATH = "F:\\code\\jspider-parent\\jspider-com.ry.jspider.core.html\\src\\main\\resources\\spider.xml";
         TaskWorker worker = new TaskWorker("worker1");
+        worker.setHandler(new TaskHandlerAdaptor());
         worker.init();
 
         Thread thread = new Thread(worker);

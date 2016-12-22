@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<spider xmlns="http://www.w3school.com.cn" name="test">
+    <taskWorker id="worker1" host="127.0.0.1" port="38888" maxTaskNum="10">
+        <filterChain>
+            <!--<filter name="loginFilter" class="com.ry.jspider.com.ry.jspider.core.html.BasicLoginFilter"/>-->
+            <filter name="htmlReadFilter" class="com.ry.jspider.core.html.filter.HtmlReadFilter"/>
+            <filter name="jsoupFilter" class="com.ry.jspider.core.html.filter.JSoupFilter"/>
+        </filterChain>
+        <httpConfig>
+            <requestConfig connectionRequestTimeout="500" connectTimeout="500" socketTimeout="500"/>
+            <header Accept="Accept text/com.ry.jspider.core.html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                    Connection="keep-alive" User-Agent="Mozilla/5.0 (Windows NT 6.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"/>
+        </httpConfig>
+    </taskWorker>
+    <urls>
+        <url>http://www.baidu.com</url>
+        <url>http://www.sina.com</url>
+        <url>http://www.qq.com</url>
+    </urls>
+</spider>

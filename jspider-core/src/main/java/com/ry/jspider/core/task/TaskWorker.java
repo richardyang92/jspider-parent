@@ -24,7 +24,7 @@ public class TaskWorker implements Runnable, Service {
     private boolean run = false;
     private String id;
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    private TaskHandler handler = new TaskHandler();
+    private TaskHandlerAdaptor handler;
 
     public TaskWorker(String id) {
         this.id = id;
@@ -32,6 +32,14 @@ public class TaskWorker implements Runnable, Service {
 
     public String getId() {
         return this.id;
+    }
+
+    public TaskHandlerAdaptor getHandler() {
+        return handler;
+    }
+
+    public void setHandler(TaskHandlerAdaptor handler) {
+        this.handler = handler;
     }
 
     private synchronized int getTaskSize() {

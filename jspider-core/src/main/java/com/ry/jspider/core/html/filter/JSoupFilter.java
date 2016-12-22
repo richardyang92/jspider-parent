@@ -1,4 +1,4 @@
-package com.ry.jspider.html.filter;
+package com.ry.jspider.core.html.filter;
 
 import com.ry.jspider.core.log.Log;
 import com.ry.jspider.core.task.Result;
@@ -7,7 +7,6 @@ import com.ry.jspider.core.task.TaskFilter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 /**
  * Created by yangyang on 2016/12/22.
@@ -19,12 +18,12 @@ public class JSoupFilter extends TaskFilter {
     }
 
     public void beforeChain(Task task, Result result) {
-        if (task.getAttributes().get("html") == null
-                || task.getAttributes().get("html").toString().trim().equals("")) {
-            log.warn("html has no content");
+        if (task.getAttributes().get("com/ry/jspider/core/html") == null
+                || task.getAttributes().get("com/ry/jspider/core/html").toString().trim().equals("")) {
+            log.warn("com.ry.jspider.core.html has no content");
         } else {
-            Document document = Jsoup.parse(task.getAttributes().get("html").toString());
-            task.getAttributes().remove("html");
+            Document document = Jsoup.parse(task.getAttributes().get("com/ry/jspider/core/html").toString());
+            task.getAttributes().remove("com/ry/jspider/core/html");
             task.getAttributes().put("body", document.body());
         }
     }
