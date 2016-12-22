@@ -21,4 +21,12 @@ public class Result {
     public void setResultString(String resultString) {
         this.resultString = resultString;
     }
+
+    public Map<String, Object> getResultMap() {
+        return resultMap;
+    }
+
+    public void setResultMap(Map<String, Object> resultMap) {
+        this.resultMap = resultMap;
+    }
 }

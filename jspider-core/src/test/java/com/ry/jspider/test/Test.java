@@ -1,27 +1,30 @@
 package com.ry.jspider.test;
 
+import com.ry.jspider.core.builder.TaskXMLBuilder;
 import com.ry.jspider.core.config.Const;
-import com.ry.jspider.core.log.Log;
 import com.ry.jspider.core.task.Task;
 import com.ry.jspider.core.task.TaskHandlerAdaptor;
 import com.ry.jspider.core.task.TaskWorker;
-import com.ry.jspider.core.html.filter.HtmlReadFilter;
 
 /**
- * Created by yangyang on 2016/12/20.
+ * Created by yangyang on 2016/12/21.
  */
-public class HtmlTest {
-    private static Log log = Log.getLogger(HtmlTest.class);
+public class Test {
+    static {
+        Const.CONFIG_FILE_PATH =
+                "F:\\code\\jspider-parent\\jspider-core\\src\\main\\resources\\spider.xml";
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        Const.CONFIG_FILE_PATH = "F:\\code\\jspider-parent\\jspider-com.ry.jspider.core.html\\src\\main\\resources\\spider.xml";
+        Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
+
         TaskWorker worker = new TaskWorker("worker1");
         worker.setHandler(new TaskHandlerAdaptor());
         worker.init();
 
         Thread thread = new Thread(worker);
         thread.start();
-        Task task = new Task("http://www.1kkk.com/other148716/");
-        task.builtFilterChain(new HtmlReadFilter("baiduFilter"));
+
         worker.submitTask(task);
 
         Thread.sleep(10000);

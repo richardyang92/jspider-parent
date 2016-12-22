@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by yangyang on 2016/12/21.
  */
-public class SpiderXMLConfigTest {
+public class ConfigUnitTest {
 
     static {
         Const.CONFIG_FILE_PATH =

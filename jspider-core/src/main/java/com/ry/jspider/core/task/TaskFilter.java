@@ -8,6 +8,11 @@ import com.ry.jspider.core.log.Log;
 public abstract class TaskFilter implements Filter {
     private static Log log = Log.getLogger(TaskFilter.class);
     protected String name;
+    protected String regExp;
+
+    public void setRegExp(String regExp) {
+        this.regExp = regExp;
+    }
 
     public TaskFilter(String name) {
         this.name = name;

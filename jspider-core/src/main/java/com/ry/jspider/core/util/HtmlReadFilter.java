@@ -1,17 +1,16 @@
-package com.ry.jspider.core.html.filter;
+package com.ry.jspider.core.util;
 
-import com.ry.jspider.core.config.Const;
 import com.ry.jspider.core.log.Log;
 import com.ry.jspider.core.task.Result;
 import com.ry.jspider.core.task.Task;
 import com.ry.jspider.core.task.TaskFilter;
-import com.ry.jspider.core.util.HttpUtil;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
- * Created by yangyang on 2016/12/20.
+ * Created by yangyang on 2016/12/22.
  */
 public class HtmlReadFilter extends TaskFilter {
     private static Log log = Log.getLogger(HtmlReadFilter.class);
@@ -22,24 +21,20 @@ public class HtmlReadFilter extends TaskFilter {
 
     public void beforeChain(Task task, Result result) {
         String url = task.getTaskURL();
-        String html = "";
-
         if (HttpUtil.judgeURL(url)) {
             try {
-                html = HttpUtil.getHtml(url, (String) task.getAttributes().get(Const.WORKER_ID));
-                Map<String, Object> attributes = task.getAttributes();
-                attributes.put("com/ry/jspider/core/html", html);
+                String html = HttpUtil.getHtml(url,
+                        (String) task.getAttributes().get("id"));
+                task.getAttributes().put("html", html);
             } catch (IOException e) {
-                html = "";
                 log.error(e.getMessage());
             }
-        } else {
-            log.warn("url is invalidate");
         }
     }
 
     public void afterChain(Task task, Result result) {
-//        Map<String, Object> attributes = task.getAttributes();
-//        result.setResultString(attributes.get("com.ry.jspider.core.html").toString());
+        String html = (String) task.getAttributes().get("html");
+        Document document = Jsoup.parse(html);
+        result.getResultMap().put("document", document);
     }
 }

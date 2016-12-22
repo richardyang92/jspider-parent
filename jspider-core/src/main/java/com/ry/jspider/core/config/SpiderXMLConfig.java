@@ -84,6 +84,7 @@ public class SpiderXMLConfig extends XMLConfig {
             Map<String, String> currentFilterAttribute = new HashMap();
             currentFilterAttribute.put("name", filter.attributeValue("name"));
             currentFilterAttribute.put("class", filter.attributeValue("class"));
+            currentFilterAttribute.put("regExp", filter.attributeValue("regExp"));
             attributeList.add(currentFilterAttribute);
         }
         return attributeList;

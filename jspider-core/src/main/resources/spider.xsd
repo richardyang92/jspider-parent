@@ -73,6 +73,7 @@
         <xs:complexType>
             <xs:attribute name="name" type="xs:string"/>
             <xs:attribute name="class" type="xs:string"/>
+            <xs:attribute name="regExp" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

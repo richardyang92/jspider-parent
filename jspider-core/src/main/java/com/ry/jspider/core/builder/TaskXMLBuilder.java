@@ -36,6 +36,7 @@ public class TaskXMLBuilder {
                 Class clazz = Class.forName((String) map.get("class"));
                 Constructor method = clazz.getConstructor(new Class[]{String.class});
                 TaskFilter filter = (TaskFilter) method.newInstance(new Object[]{map.get("name")});
+                filter.setRegExp(map.get("regExp"));
                 taskFilters[index++] = filter;
             } catch (ClassNotFoundException e) {
                 log.error("1 {}", new Object[]{e.getMessage()});
@@ -55,6 +56,7 @@ public class TaskXMLBuilder {
         }
 
         task.builtFilterChain(taskFilters);
+        task.getAttributes().put("id", taskWorkerId);
         return task;
     }
 }
