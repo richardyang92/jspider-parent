@@ -1,5 +1,7 @@
 package com.ry.jspider.core.task;
 
+import com.ry.jspider.core.log.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -9,6 +11,8 @@ import java.util.concurrent.Future;
  * Created by yangyang on 2016/12/21.
  */
 public class Task implements Callable<String> {
+    private static Log log = Log.getLogger(Task.class);
+
     private String taskURL;
     private Map<String, Object> attributes = new HashMap<String, Object>();
     private Future<String> resultFuture;
@@ -23,6 +27,7 @@ public class Task implements Callable<String> {
 
     public void builtFilterChain(Filter... filters) {
         for (Filter filter : filters) {
+            log.info("add {} to filterChain", filter);
             this.filterChain.addFilter(filter);
         }
     }

@@ -11,9 +11,11 @@ import com.ry.jspider.core.task.TaskWorker;
 public class TaskXMLBuilderTest {
 
     public static void main(String[] args) throws InterruptedException {
-        Const.CONFIG_FILE_PATH = "F:\\code\\jspider-parent\\jspider-html\\src\\main\\resources\\spider.xml";
-        TaskXMLBuilder builder = new TaskXMLBuilder("http://www.baidu.com", "worker1");
-        Task task = builder.build().getInstance();
+        Const.CONFIG_FILE_PATH =
+                "F:\\code\\jspider-parent\\jspider-html\\src\\main\\resources\\spider.xml";
+//        TaskXMLBuilder builder = new TaskXMLBuilder("http://www.baidu.com", "worker1");
+//        Task task = builder.build().getInstance();
+        Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
 
         TaskWorker worker = new TaskWorker("worker1");
         worker.init();

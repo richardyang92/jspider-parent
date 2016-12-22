@@ -24,7 +24,7 @@ public class TaskWorker implements Runnable, Service {
     private boolean run = false;
     private String id;
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    private TaskHandler listener = new TaskHandler();
+    private TaskHandler handler = new TaskHandler();
 
     public TaskWorker(String id) {
         this.id = id;
@@ -69,7 +69,7 @@ public class TaskWorker implements Runnable, Service {
             try {
                 Thread.sleep(1000L);
             } catch (InterruptedException e) {
-                this.listener.exceptionCaught(e);
+                this.handler.exceptionCaught(e);
             }
             Task task = getTask();
             if (task != null) {
@@ -85,11 +85,11 @@ public class TaskWorker implements Runnable, Service {
                 if (result.getResultFuture().isDone()) {
                     try {
                         String resultString = (String) result.getResultFuture().get();
-                        this.listener.messageReceived(resultString);
+                        this.handler.messageReceived(resultString);
                     } catch (InterruptedException e) {
-                        this.listener.exceptionCaught(e);
+                        this.handler.exceptionCaught(e);
                     } catch (ExecutionException e) {
-                        this.listener.exceptionCaught(e);
+                        this.handler.exceptionCaught(e);
                     }
                     this.resultList.remove(result);
                 }

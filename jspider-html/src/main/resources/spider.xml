@@ -4,6 +4,7 @@
         <filterChain>
             <!--<filter name="loginFilter" class="com.ry.jspider.html.BasicLoginFilter"/>-->
             <filter name="htmlReadFilter" class="com.ry.jspider.html.filter.HtmlReadFilter"/>
+            <filter name="jsoupFilter" class="com.ry.jspider.html.filter.JSoupFilter"/>
         </filterChain>
         <httpConfig>
             <requestConfig connectionRequestTimeout="500" connectTimeout="500" socketTimeout="500"/>

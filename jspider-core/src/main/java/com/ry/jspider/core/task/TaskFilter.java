@@ -20,8 +20,8 @@ public abstract class TaskFilter implements Filter {
         afterChain(task, result);
     }
 
-    public abstract void beforeChain(Task paramTask, Result paramResult);
+    public abstract void beforeChain(Task task, Result result);
 
-    public abstract void afterChain(Task paramTask, Result paramResult);
+    public abstract void afterChain(Task task, Result result);
 
 }

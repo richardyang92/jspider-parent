@@ -41,8 +41,8 @@ public class HtmlReadFilter extends TaskFilter {
     }
 
     public void afterChain(Task task, Result result) {
-        Map<String, Object> attributes = task.getAttributes();
-        result.setResultString(attributes.get("html").toString());
+//        Map<String, Object> attributes = task.getAttributes();
+//        result.setResultString(attributes.get("html").toString());
     }
 
     private boolean judgeURL(String url) {
