@@ -5,4 +5,4 @@ target
 .classpath
 .project
 auth
-*.log
+jspider_log/

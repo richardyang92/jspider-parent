@@ -1,5 +1,6 @@
 package com.ry.jspider.core.builder;
 
+import com.ry.jspider.core.config.Const;
 import com.ry.jspider.core.config.SpiderXMLConfig;
 import com.ry.jspider.core.config.XMLConfig;
 import com.ry.jspider.core.log.Log;
@@ -27,7 +28,8 @@ public class TaskXMLBuilder {
 
     public TaskXMLBuilder build() {
         this.task = new Task(this.taskURL);
-        List<Map<String, String>> filters = XMLConfig.loadConfig().getList("Filters", SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{this.taskWorkerId});
+        List<Map<String, String>> filters = XMLConfig.loadConfig().getList(Const.FILTERS,
+                SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{this.taskWorkerId});
 
         TaskFilter[] taskFilters = new TaskFilter[filters.size()];
         int index = 0;
