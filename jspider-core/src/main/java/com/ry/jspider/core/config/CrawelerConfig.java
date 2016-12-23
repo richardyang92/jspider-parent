@@ -7,13 +7,13 @@ import java.util.*;
 /**
  * Created by yangyang on 2016/12/21.
  */
-public class SpiderXMLConfig extends XMLConfig {
-    private static Element getSpider() {
+public class CrawelerConfig extends XMLConfig {
+    private static Element getCraweler() {
         return loadConfig().document.getRootElement();
     }
 
     private static Element getTaskWorkerById(String id) {
-        List taskWorkers = getSpider().elements("taskWorker");
+        List taskWorkers = getCraweler().elements("taskWorker");
         for (Object object : taskWorkers) {
             Element taskWorker = (Element) object;
             if (taskWorker.attributeValue("id").equals(id)) {
@@ -40,15 +40,15 @@ public class SpiderXMLConfig extends XMLConfig {
     }
 
     private static Element getURLs() {
-        return getSpider().element("urls");
+        return getCraweler().element("urls");
     }
 
-    public static String getSpiderName() {
-        return getSpider().attributeValue("name");
+    public static String getCrawelerName() {
+        return getCraweler().attributeValue("name");
     }
 
     public static int getTaskWorkerNumber() {
-        Element spider = getSpider();
+        Element spider = getCraweler();
         Iterator taskWorkers = spider.elements("taskWorker").iterator();
         int count = 0;
         while (taskWorkers.hasNext()) {

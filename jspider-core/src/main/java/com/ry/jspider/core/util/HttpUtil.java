@@ -1,7 +1,7 @@
 package com.ry.jspider.core.util;
 
 import com.ry.jspider.core.config.Const;
-import com.ry.jspider.core.config.SpiderXMLConfig;
+import com.ry.jspider.core.config.CrawelerConfig;
 import com.ry.jspider.core.config.XMLConfig;
 import com.ry.jspider.core.log.Log;
 import org.apache.http.HttpEntity;
@@ -38,19 +38,19 @@ public class HttpUtil {
     private static RequestConfig setRequestConfig(String id) {
         return RequestConfig.custom()
                 .setConnectionRequestTimeout(XMLConfig.loadConfig().getInt(Const.CONNECTION_REQUEST_TIMEOUT,
-                        SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{id}))
+                        CrawelerConfig.class, new Class[]{String.class}, new Object[]{id}))
                 .setConnectTimeout(XMLConfig.loadConfig().getInt(Const.CONNECT_TIMEOUT,
-                        SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{id}))
+                        CrawelerConfig.class, new Class[]{String.class}, new Object[]{id}))
                 .setSocketTimeout(XMLConfig.loadConfig().getInt(Const.SOCKET_TIMEOUT,
-                        SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{id})).build();
+                        CrawelerConfig.class, new Class[]{String.class}, new Object[]{id})).build();
     }
 
     private static void setGetHeader(HttpGet httpGet, String id) {
-        httpGet.setHeader(Const.ACCEPT, XMLConfig.loadConfig().getString(Const.ACCEPT, SpiderXMLConfig.class,
+        httpGet.setHeader(Const.ACCEPT, XMLConfig.loadConfig().getString(Const.ACCEPT, CrawelerConfig.class,
                 new Class[]{String.class}, new Object[]{id}));
-        httpGet.setHeader(Const.CONNECTION, XMLConfig.loadConfig().getString(Const.CONNECTION, SpiderXMLConfig.class,
+        httpGet.setHeader(Const.CONNECTION, XMLConfig.loadConfig().getString(Const.CONNECTION, CrawelerConfig.class,
                 new Class[]{String.class}, new Object[]{id}));
-        httpGet.setHeader(Const.USER_AGENT_KEY, XMLConfig.loadConfig().getString(Const.USER_AGENT_VALUE, SpiderXMLConfig.class,
+        httpGet.setHeader(Const.USER_AGENT_KEY, XMLConfig.loadConfig().getString(Const.USER_AGENT_VALUE, CrawelerConfig.class,
                 new Class[]{String.class}, new Object[]{id}));
     }
 

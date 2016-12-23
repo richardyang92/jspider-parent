@@ -9,7 +9,7 @@ public class Const {
     public static final String URL_PATTERN = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     public static final String WORKER_ID = "worker_Id";
     public static final String FILTERS = "Filters";
-    public static final String SPIDER_NAME = "SpiderName";
+    public static final String SPIDER_NAME = "CrawelerName";
     public static final String TASK_WORKER_HOST = "TaskWorkerHost";
     public static final String TASK_WORKER_PORT = "TaskWorkerPort";
     public static final String TASK_WORKER_NUMBER = "TaskWorkerNumber";

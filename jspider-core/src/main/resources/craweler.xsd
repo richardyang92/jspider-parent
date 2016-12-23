@@ -3,7 +3,7 @@
            targetNamespace="http://www.w3school.com.cn"
            xmlns="http://www.w3school.com.cn"
            elementFormDefault="qualified">
-    <xs:element name="spider">
+    <xs:element name="craweler">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="taskWorker" maxOccurs="unbounded"/>

@@ -1,7 +1,7 @@
 package com.ry.jspider.core.task;
 
 import com.ry.jspider.core.api.Service;
-import com.ry.jspider.core.config.SpiderXMLConfig;
+import com.ry.jspider.core.config.CrawelerConfig;
 import com.ry.jspider.core.config.XMLConfig;
 import com.ry.jspider.core.log.Log;
 
@@ -48,7 +48,7 @@ public class TaskWorker implements Runnable, Service {
 
     public void submitTask(Task task) {
         int taskNumber = getTaskSize();
-        if (taskNumber < XMLConfig.loadConfig().getInt("MaxTaskNumber", SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{this.id})) {
+        if (taskNumber < XMLConfig.loadConfig().getInt("MaxTaskNumber", CrawelerConfig.class, new Class[]{String.class}, new Object[]{this.id})) {
             this.lock.lock();
             task.getAttributes().put("worker_Id", getId());
 

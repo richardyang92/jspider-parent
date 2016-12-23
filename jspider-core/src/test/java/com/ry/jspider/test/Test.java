@@ -12,7 +12,7 @@ import com.ry.jspider.core.task.TaskWorker;
 public class Test {
     static {
         Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\spider.xml";
+                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\craweler.xml";
     }
 
     public static void main(String[] args) throws InterruptedException {

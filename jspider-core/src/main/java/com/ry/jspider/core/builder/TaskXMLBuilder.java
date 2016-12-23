@@ -1,7 +1,7 @@
 package com.ry.jspider.core.builder;
 
 import com.ry.jspider.core.config.Const;
-import com.ry.jspider.core.config.SpiderXMLConfig;
+import com.ry.jspider.core.config.CrawelerConfig;
 import com.ry.jspider.core.config.XMLConfig;
 import com.ry.jspider.core.log.Log;
 import com.ry.jspider.core.task.Task;
@@ -24,7 +24,7 @@ public class TaskXMLBuilder {
     public static Task build(String taskURL, String taskWorkerId) {
         Task task = new Task(taskURL);
         List<Map<String, String>> filters = XMLConfig.loadConfig().getList(Const.FILTERS,
-                SpiderXMLConfig.class, new Class[]{String.class}, new Object[]{taskWorkerId});
+                CrawelerConfig.class, new Class[]{String.class}, new Object[]{taskWorkerId});
 
         log.info("filters->size {}", filters.size());
 
