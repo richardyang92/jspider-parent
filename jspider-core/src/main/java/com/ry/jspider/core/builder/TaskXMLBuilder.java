@@ -26,13 +26,13 @@ public class TaskXMLBuilder {
         List<Map<String, String>> filters = XMLConfig.loadConfig().getList(Const.FILTERS,
                 CrawelerConfig.class, new Class[]{String.class}, new Object[]{taskWorkerId});
 
-        log.info("filters->size {}", filters.size());
+        log.debug("filters->size {}", filters.size());
 
         TaskFilter[] taskFilters = new TaskFilter[filters.size()];
         int index = 0;
         for (Map<String, String> map : filters) {
             try {
-                log.info("map->name: {}, map->class: {}", map.get("name"), map.get("class"));
+                log.debug("map->name: {}, map->class: {}", map.get("name"), map.get("class"));
                 Class clazz = Class.forName((String) map.get("class"));
                 Constructor method = clazz.getConstructor(String.class);
                 TaskFilter filter = (TaskFilter) method.newInstance(map.get("name"));
@@ -52,7 +52,7 @@ public class TaskXMLBuilder {
         }
 
         for (TaskFilter taskFilter : taskFilters) {
-            log.info("taskFilter: {}", taskFilter);
+            log.debug("taskFilter: {}", taskFilter);
         }
 
         task.builtFilterChain(taskFilters);
