@@ -12,11 +12,11 @@ import com.ry.jspider.core.task.TaskWorker;
 public class Test {
     static {
         Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-core\\src\\main\\resources\\spider.xml";
+                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\spider.xml";
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Task task = TaskXMLBuilder.build("http://www.qq.com", "worker1");
+        Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
 
         TaskWorker worker = new TaskWorker("worker1");
         worker.setHandler(new TaskHandlerAdaptor());

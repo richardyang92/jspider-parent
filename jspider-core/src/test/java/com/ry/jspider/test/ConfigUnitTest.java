@@ -18,7 +18,7 @@ public class ConfigUnitTest {
 
     static {
         Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-core\\src\\main\\resources\\spider.xml";
+                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\spider.xml";
     }
 
     @Test
