@@ -25,7 +25,8 @@ public class HtmlReadFilter extends TaskFilter {
             try {
                 String html = HttpUtil.getHtml(url,
                         (String) task.getAttributes().get("id"));
-                task.getAttributes().put("html", html);
+                Document document = Jsoup.parse(html);
+                result.getResultMap().put("document", document);
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
@@ -33,8 +34,5 @@ public class HtmlReadFilter extends TaskFilter {
     }
 
     public void afterChain(Task task, Result result) {
-        String html = (String) task.getAttributes().get("html");
-        Document document = Jsoup.parse(html);
-        result.getResultMap().put("document", document);
     }
 }

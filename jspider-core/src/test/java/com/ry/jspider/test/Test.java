@@ -16,7 +16,7 @@ public class Test {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Task task = TaskXMLBuilder.build("http://www.baidu.com", "worker1");
+        Task task = TaskXMLBuilder.build("http://www.qq.com", "worker1");
 
         TaskWorker worker = new TaskWorker("worker1");
         worker.setHandler(new TaskHandlerAdaptor());

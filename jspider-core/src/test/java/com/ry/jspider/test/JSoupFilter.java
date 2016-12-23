@@ -18,13 +18,12 @@ public class JSoupFilter extends TaskFilter {
     }
 
     public void beforeChain(Task task, Result result) {
-        log.info("regExp: {}", regExp);
-        Document document = (Document) result.getResultMap().get("document");
-        Elements elements = document.select(regExp);
-        log.info("elements size: {}", elements.size());
+
     }
 
     public void afterChain(Task task, Result result) {
-        //
+        Document document = (Document) result.getResultMap().get("document");
+        Elements elements = document.select(regExp);
+        result.setResultString(elements.toString());
     }
 }
