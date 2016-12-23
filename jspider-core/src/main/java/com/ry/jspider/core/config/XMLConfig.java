@@ -45,18 +45,18 @@ public class XMLConfig {
         String methodName = "get" + key;
         try {
             if (params == null) {
-                Method method = clazz.getDeclaredMethod(methodName, new Class[0]);
-                value = (String) method.invoke(null, new Object[0]);
+                Method method = clazz.getDeclaredMethod(methodName);
+                value = (String) method.invoke(null);
             } else {
                 Method method = clazz.getDeclaredMethod(methodName, params);
                 value = (String) method.invoke(null, values);
             }
         } catch (IllegalAccessException e) {
-            log.error("2 {}", new Object[]{e.getMessage()});
+            log.error("2 {}", e.getMessage());
         } catch (NoSuchMethodException e) {
-            log.error("3 {}", new Object[]{e.getMessage()});
+            log.error("3 {}", e.getMessage());
         } catch (InvocationTargetException e) {
-            log.error("4 {}", new Object[]{e.getMessage()});
+            log.error("4 {}", e.getMessage());
         }
         return value;
     }
@@ -66,18 +66,18 @@ public class XMLConfig {
         String methodName = "get" + key;
         try {
             if (params == null) {
-                Method method = clazz.getDeclaredMethod(methodName, new Class[0]);
-                value = ((Integer) method.invoke(null, new Object[0])).intValue();
+                Method method = clazz.getDeclaredMethod(methodName);
+                value = (Integer) method.invoke(null);
             } else {
                 Method method = clazz.getDeclaredMethod(methodName, params);
-                value = ((Integer) method.invoke(null, values)).intValue();
+                value = (Integer) method.invoke(null, values);
             }
         } catch (IllegalAccessException e) {
-            log.error("2 {}", new Object[]{e.getMessage()});
+            log.error("2 {}", e.getMessage());
         } catch (NoSuchMethodException e) {
-            log.error("3 {}", new Object[]{e.getMessage()});
+            log.error("3 {}", e.getMessage());
         } catch (InvocationTargetException e) {
-            log.error("4 {}", new Object[]{e.getMessage()});
+            log.error("4 {}", e.getMessage());
         }
         return value;
     }
@@ -87,18 +87,18 @@ public class XMLConfig {
         String methodName = "get" + key;
         try {
             if (params == null) {
-                Method method = clazz.getDeclaredMethod(methodName, new Class[0]);
-                value = (List) method.invoke(null, new Object[0]);
+                Method method = clazz.getDeclaredMethod(methodName);
+                value = (List) method.invoke(null);
             } else {
                 Method method = clazz.getDeclaredMethod(methodName, params);
                 value = (List) method.invoke(null, values);
             }
         } catch (IllegalAccessException e) {
-            log.error("2 {}", new Object[]{e.getMessage()});
+            log.error("2 {}", e.getMessage());
         } catch (NoSuchMethodException e) {
-            log.error("3 {}", new Object[]{e.getMessage()});
+            log.error("3 {}", e.getMessage());
         } catch (InvocationTargetException e) {
-            log.error("4 {}", new Object[]{e.getMessage()});
+            log.error("4 {}", e.getMessage());
         }
         return value;
     }

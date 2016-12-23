@@ -34,20 +34,20 @@ public class TaskXMLBuilder {
             try {
                 log.info("map->name: {}, map->class: {}", map.get("name"), map.get("class"));
                 Class clazz = Class.forName((String) map.get("class"));
-                Constructor method = clazz.getConstructor(new Class[]{String.class});
-                TaskFilter filter = (TaskFilter) method.newInstance(new Object[]{map.get("name")});
+                Constructor method = clazz.getConstructor(String.class);
+                TaskFilter filter = (TaskFilter) method.newInstance(map.get("name"));
                 filter.setRegExp(map.get("regExp"));
                 taskFilters[index++] = filter;
             } catch (ClassNotFoundException e) {
-                log.error("1 {}", new Object[]{e.getMessage()});
+                log.error("1 {}", e.getMessage());
             } catch (NoSuchMethodException e) {
-                log.error("2 {}", new Object[]{e.getMessage()});
+                log.error("2 {}", e.getMessage());
             } catch (IllegalAccessException e) {
-                log.error("3 {}", new Object[]{e.getMessage()});
+                log.error("3 {}", e.getMessage());
             } catch (InstantiationException e) {
-                log.error("4 {}", new Object[]{e.getMessage()});
+                log.error("4 {}", e.getMessage());
             } catch (InvocationTargetException e) {
-                log.error("5 {}", new Object[]{e.getMessage()});
+                log.error("5 {}", e.getMessage());
             }
         }
 
