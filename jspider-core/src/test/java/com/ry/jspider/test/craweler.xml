@@ -2,8 +2,7 @@
 <craweler xmlns="http://craweler.jspider.com.cn" name="test">
     <taskWorker id="worker1" host="127.0.0.1" port="38888" maxTaskNum="10">
         <filterChain>
-            <filter name="htmlRead" class="com.ry.jspider.test.HtmlReadFilter" regExp=""/>
-            <filter name="jsoup" class="com.ry.jspider.test.JSoupFilter" regExp="div"/>
+            <filter name="htmlRead" class="com.ry.jspider.test.HtmlReadFilter" selectors="false"/>
         </filterChain>
         <httpConfig>
             <requestConfig connectionRequestTimeout="500" connectTimeout="500" socketTimeout="500"/>
@@ -11,9 +10,8 @@
                     Connection="keep-alive" User-Agent="Mozilla/5.0 (Windows NT 6.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"/>
         </httpConfig>
     </taskWorker>
-    <urls>
-        <url>http://www.baidu.com</url>
-        <url>http://www.sina.com</url>
-        <url>http://www.qq.com</url>
-    </urls>
+    <selectors>
+        <selector>test.xml</selector>
+        <selector>test2.xml</selector>
+    </selectors>
 </craweler>

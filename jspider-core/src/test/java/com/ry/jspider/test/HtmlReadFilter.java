@@ -1,6 +1,6 @@
 package com.ry.jspider.test;
 
-import com.ry.jspider.core.log.Log;
+import com.ry.jspider.log.Log;
 import com.ry.jspider.core.task.Result;
 import com.ry.jspider.core.task.Task;
 import com.ry.jspider.core.task.TaskFilter;
@@ -27,8 +27,7 @@ public class HtmlReadFilter extends TaskFilter {
                 String html = HttpUtil.getHtml(url,
                         (String) task.getAttributes().get("id"));
                 Document document = Jsoup.parse(html);
-                log.info("document:\n{}", document);
-                result.getResultMap().put("document", document);
+                task.getAttributes().put("document", document);
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
@@ -36,5 +35,6 @@ public class HtmlReadFilter extends TaskFilter {
     }
 
     public void afterChain(Task task, Result result) {
+        result.setResultString(task.getAttributes().get("document").toString());
     }
 }

@@ -1,8 +1,8 @@
 package com.ry.jspider.test;
 
-import com.ry.jspider.core.config.Const;
-import com.ry.jspider.core.config.CrawelerConfig;
-import com.ry.jspider.core.config.XMLConfig;
+import com.ry.jspider.config.Const;
+import com.ry.jspider.config.CrawelerConfig;
+import com.ry.jspider.config.XMLConfig;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,8 +17,9 @@ import java.util.Map;
 public class ConfigUnitTest {
 
     static {
-        Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\craweler.xml";
+        Const.CONFIG_BASE =
+                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\";
+        Const.TASK_FILE = "craweler.xml";
     }
 
     @Test
@@ -51,15 +52,12 @@ public class ConfigUnitTest {
                 CrawelerConfig.class, new Class[]{String.class}, new Object[]{"worker1"});
 
         List<Map<String, String>> expList = new ArrayList<Map<String, String>>();
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("name", "loginFilter");
-        map.put("class", "com.ry.jspider.com.ry.jspider.core.html.BasicLoginFilter");
-        expList.add(map);
 
-        Map<String, String> map1 = new HashMap<String, String>();
-        map1.put("name", "htmlReadFilter");
-        map1.put("class", "com.ry.jspider.com.ry.jspider.core.html.HtmlReadFilter");
-        expList.add(map1);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("name", "htmlRead");
+        map.put("selectors", "false");
+        map.put("class", "com.ry.jspider.test.HtmlReadFilter");
+        expList.add(map);
         Assert.assertEquals("false", expList, resultList);
     }
 
@@ -117,13 +115,11 @@ public class ConfigUnitTest {
     }
 
     @Test
-    public void TestURLList() {
+    public void TestSelectorList() {
         List<String> expList = new ArrayList<String>();
-        expList.add("http://www.baidu.com");
-        expList.add("http://www.sina.com");
-        expList.add("http://www.qq.com");
+        expList.add("test.xml");
 
-        List<String> result = XMLConfig.loadConfig().getList("URLList", CrawelerConfig.class, null, null);
+        List<String> result = XMLConfig.loadConfig().getList("SelectorList", CrawelerConfig.class, null, null);
         Assert.assertEquals("false", expList, result);
     }
 }

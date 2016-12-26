@@ -1,18 +1,13 @@
 package com.ry.jspider.core.task;
 
-import com.ry.jspider.core.log.Log;
+import com.ry.jspider.log.Log;
 
 /**
  * Created by yangyang on 2016/12/21.
  */
-public abstract class TaskFilter implements Filter {
+public class TaskFilter implements Filter {
     private static Log log = Log.getLogger(TaskFilter.class);
     protected String name;
-    protected String regExp;
-
-    public void setRegExp(String regExp) {
-        this.regExp = regExp;
-    }
 
     public TaskFilter(String name) {
         this.name = name;
@@ -25,8 +20,12 @@ public abstract class TaskFilter implements Filter {
         afterChain(task, result);
     }
 
-    public abstract void beforeChain(Task task, Result result);
+    public void beforeChain(Task task, Result result) {
+        log.info("{} before chain", this.name);
+    }
 
-    public abstract void afterChain(Task task, Result result);
+    public void afterChain(Task task, Result result) {
+        log.info("{} after chain", this.name);
+    }
 
 }

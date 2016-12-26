@@ -1,6 +1,6 @@
 package com.ry.jspider.core.task;
 
-import com.ry.jspider.core.log.Log;
+import com.ry.jspider.log.Log;
 
 import java.util.HashMap;
 import java.util.Map;

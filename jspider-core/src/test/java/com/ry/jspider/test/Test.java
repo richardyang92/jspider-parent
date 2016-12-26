@@ -1,7 +1,7 @@
 package com.ry.jspider.test;
 
 import com.ry.jspider.core.builder.TaskXMLBuilder;
-import com.ry.jspider.core.config.Const;
+import com.ry.jspider.config.Const;
 import com.ry.jspider.core.task.Task;
 import com.ry.jspider.core.task.TaskHandlerAdaptor;
 import com.ry.jspider.core.task.TaskWorker;
@@ -11,8 +11,9 @@ import com.ry.jspider.core.task.TaskWorker;
  */
 public class Test {
     static {
-        Const.CONFIG_FILE_PATH =
-                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\craweler.xml";
+        Const.CONFIG_BASE =
+                "F:\\code\\jspider-parent\\jspider-core\\src\\test\\java\\com\\ry\\jspider\\test\\";
+        Const.TASK_FILE = "craweler.xml";
     }
 
     public static void main(String[] args) throws InterruptedException {

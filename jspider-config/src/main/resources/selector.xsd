@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://selector.css.com.cn"
+        xmlns="http://selector.css.com.cn"
+        elementFormDefault="qualified">
+    <xs:element name="selector">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="select" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="namespace" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="select">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="css-selector" maxOccurs="1" minOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="paramType" type="xs:string"/>
+            <xs:attribute name="resultType" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="css-selector" type="xs:string"/>
+</xs:schema>

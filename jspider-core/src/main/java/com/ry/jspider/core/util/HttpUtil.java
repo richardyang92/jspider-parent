@@ -1,9 +1,9 @@
 package com.ry.jspider.core.util;
 
-import com.ry.jspider.core.config.Const;
-import com.ry.jspider.core.config.CrawelerConfig;
-import com.ry.jspider.core.config.XMLConfig;
-import com.ry.jspider.core.log.Log;
+import com.ry.jspider.config.Const;
+import com.ry.jspider.config.CrawelerConfig;
+import com.ry.jspider.config.XMLConfig;
+import com.ry.jspider.log.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -65,7 +65,8 @@ public class HttpUtil {
 
         if (response.getStatusLine().getStatusCode() == 200) {
             HttpEntity entity = response.getEntity();
-            return EntityUtils.toString(entity, "utf-8");
+            return EntityUtils.toString(entity, XMLConfig.loadConfig().getString(Const.TASK_WORKER_CHARSET,
+                    CrawelerConfig.class, new Class[] {String.class}, new Object[] {id}));
         }
         httpGet.releaseConnection();
         return null;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<selector xmlns="http://selector.css.com.cn" namespace="com.ry.css.test.TestMapper">
+    <select id="selectNextURL" paramType="string" resultType="org.jsoup.select.Elements">
+        <css-selector>
+            html body header.title section div.dashboard
+        </css-selector>
+    </select>
+</selector>

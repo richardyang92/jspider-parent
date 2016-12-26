@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<craweler xmlns="http://craweler.jspider.com.cn" name="test">
+    <taskWorker id="worker1" maxTaskNum="10" charset="GBK">
+        <filterChain>
+            <filter name="getHtml" class="com.ry.jspider.test.filter.GetHtmlFilter" selectors="false"/>
+            <filter name="nextURL" class="com.ry.jspider.test.filter.NextURLFilter" selectors="true"/>
+            <filter name="findResult" class="com.ry.jspider.test.filter.FindResultFilter" selectors="false"/>
+        </filterChain>
+        <httpConfig>
+            <requestConfig connectionRequestTimeout="500" connectTimeout="500" socketTimeout="500"/>
+            <header Accept="Accept text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                    Connection="keep-alive" User-Agent="Mozilla/5.0 (Windows NT 6.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"/>
+        </httpConfig>
+    </taskWorker>
+    <selectors>
+        <selector>nexturl.xml</selector>
+        <selector>findresult.xml</selector>
+    </selectors>
+</craweler>

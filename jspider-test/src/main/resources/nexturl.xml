@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<selector xmlns="http://selector.css.com.cn" namespace="com.ry.jspider.test.selector.NextURLSelector">
+    <select id="getNextURL" paramType="string" resultType="org.jsoup.select.Elements">
+        <css-selector>
+            html body div.dw_wp div.dw_page div.p_box div.p_wp div.p_in ul li a
+        </css-selector>
+    </select>
+</selector>

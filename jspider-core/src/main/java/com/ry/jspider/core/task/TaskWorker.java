@@ -1,9 +1,9 @@
 package com.ry.jspider.core.task;
 
 import com.ry.jspider.core.api.Service;
-import com.ry.jspider.core.config.CrawelerConfig;
-import com.ry.jspider.core.config.XMLConfig;
-import com.ry.jspider.core.log.Log;
+import com.ry.jspider.config.CrawelerConfig;
+import com.ry.jspider.config.XMLConfig;
+import com.ry.jspider.log.Log;
 
 import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
