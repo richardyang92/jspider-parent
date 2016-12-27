@@ -1,26 +1,19 @@
 package com.ry.jspider.core.task;
 
-import com.ry.jspider.core.api.Service;
 import com.ry.jspider.config.CrawelerConfig;
 import com.ry.jspider.config.XMLConfig;
+import com.ry.jspider.core.api.Service;
 import com.ry.jspider.log.Log;
 
-import java.util.LinkedList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.*;
 
 /**
  * Created by yangyang on 2016/12/21.
  */
 public class TaskWorker implements Runnable, Service {
     private static Log log = Log.getLogger(TaskWorker.class);
-    private LinkedList<Task> taskList = new LinkedList();
-    private LinkedList<Task> resultList = new LinkedList();
-    private Lock lock = new ReentrantLock();
+    private ConcurrentLinkedQueue<Task> taskList = new ConcurrentLinkedQueue<Task>();
+    private ConcurrentLinkedQueue<Task> resultList = new ConcurrentLinkedQueue<Task>();
     private boolean run = false;
     private String id;
     private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -49,12 +42,10 @@ public class TaskWorker implements Runnable, Service {
     public void submitTask(Task task) {
         int taskNumber = getTaskSize();
         if (taskNumber < XMLConfig.loadConfig().getInt("MaxTaskNumber", CrawelerConfig.class, new Class[]{String.class}, new Object[]{this.id})) {
-            this.lock.lock();
             task.getAttributes().put("worker_Id", getId());
 
             //noinspection Since15
-            this.taskList.push(task);
-            this.lock.unlock();
+            this.taskList.offer(task);
         }
     }
 
@@ -63,11 +54,9 @@ public class TaskWorker implements Runnable, Service {
         if (taskNumber <= 0) {
             return null;
         }
-        this.lock.lock();
 
         @SuppressWarnings("Since15")
-        Task task = (Task) this.taskList.pop();
-        this.lock.unlock();
+        Task task = (Task) this.taskList.poll();
         return task;
     }
 
@@ -83,12 +72,11 @@ public class TaskWorker implements Runnable, Service {
             if (task != null) {
                 resultFuture = this.executorService.submit(task);
                 task.setResultFuture(resultFuture);
-                this.lock.lock();
 
                 //noinspection Since15
-                this.resultList.push(task);
-                this.lock.unlock();
+                this.resultList.offer(task);
             }
+
             for (Task result : this.resultList) {
                 if (result.getResultFuture().isDone()) {
                     try {
